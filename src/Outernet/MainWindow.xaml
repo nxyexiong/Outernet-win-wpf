@@ -1,0 +1,66 @@
+﻿<mah:MetroWindow x:Class="Outernet.MainWindow"
+        xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Outernet"
+        mc:Ignorable="d"
+        Title="Outernet" Height="230" Width="300" ResizeMode="CanMinimize">
+    <Grid Margin="10,10,10,10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+
+        <!-- Server address -->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="4*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Content="Server address:" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="1" Name="ServerAddrTextBox" TextWrapping="NoWrap" AcceptsReturn="False" FontSize="14" VerticalAlignment="Center"/>
+        </Grid>
+
+        <!-- Server port -->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="4*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Content="Server port:" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="1" Name="ServerPortTextBox" TextWrapping="NoWrap" AcceptsReturn="False" FontSize="14" VerticalAlignment="Center"/>
+        </Grid>
+
+        <!-- User name -->
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="4*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Content="User name:" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="1" Name="UsernameTextBox" TextWrapping="NoWrap" AcceptsReturn="False" FontSize="14" VerticalAlignment="Center"/>
+        </Grid>
+
+        <!-- Secret -->
+        <Grid Grid.Row="6">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="4*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Content="Secret:" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="1" Name="SecretTextBox" TextWrapping="NoWrap" AcceptsReturn="False" FontSize="14" VerticalAlignment="Center"/>
+        </Grid>
+
+        <!-- Main button -->
+        <Button Grid.Row="8" Name="MainButton" Click="OnMainButtonClicked" Content="-"  FontSize="14" VerticalAlignment="Center"/>
+    </Grid>
+</mah:MetroWindow>

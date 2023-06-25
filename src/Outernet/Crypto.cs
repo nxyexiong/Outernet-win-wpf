@@ -6,7 +6,6 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Outernet
 {
@@ -83,6 +82,8 @@ namespace Outernet
             }
             return randomBytes;
         }
+
+        // TODO: add arm64 support for libsodium.dll
 
         [DllImport("libsodium.dll", CallingConvention = CallingConvention.Cdecl)]
         private static extern int sodium_init();

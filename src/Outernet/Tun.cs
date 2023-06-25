@@ -219,31 +219,38 @@ namespace Outernet
             Error,
         }
 
-        [DllImport("wintun.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode, SetLastError = true)]
+#if X64
+        private const string WintunDll = "wintun_x64.dll";
+#elif ARM64
+        private const string WintunDll = "wintun_arm64.dll";
+#endif
+
+        [DllImport(WintunDll, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode, SetLastError = true)]
         private static extern IntPtr WintunCreateAdapter(string name, string tunnelType, ref Guid requestedGuid);
 
-        [DllImport("wintun.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode, SetLastError = true)]
+        [DllImport(WintunDll, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode, SetLastError = true)]
         private static extern IntPtr WintunOpenAdapter(string name);
 
-        [DllImport("wintun.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode, SetLastError = true)]
+        [DllImport(WintunDll, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode, SetLastError = true)]
         private static extern void WintunCloseAdapter(IntPtr adapter);
 
-        [DllImport("wintun.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode, SetLastError = true)]
+        [DllImport(WintunDll, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode, SetLastError = true)]
         private static extern IntPtr WintunStartSession(IntPtr adapter, uint capacity);
 
-        [DllImport("wintun.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode, SetLastError = true)]
+        [DllImport(WintunDll, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode, SetLastError = true)]
         private static extern void WintunEndSession(IntPtr session);
 
-        [DllImport("wintun.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode, SetLastError = true)]
+        [DllImport(WintunDll, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode, SetLastError = true)]
         private static extern IntPtr WintunAllocateSendPacket(IntPtr session, uint packetSize);
 
-        [DllImport("wintun.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode, SetLastError = true)]
+        [DllImport(WintunDll, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode, SetLastError = true)]
         private static extern void WintunSendPacket(IntPtr sessionHandle, IntPtr packet);
 
-        [DllImport("wintun.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode, SetLastError = true)]
+        [DllImport(WintunDll, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode, SetLastError = true)]
         private static extern IntPtr WintunReceivePacket(IntPtr session, out uint packetSize);
 
-        [DllImport("wintun.dll", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode, SetLastError = true)]
+        [DllImport(WintunDll, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode, SetLastError = true)]
         private static extern void WintunReleaseReceivePacket(IntPtr session, IntPtr packet);
+
     }
 }

@@ -19,8 +19,6 @@ namespace Outernet
             try
             {
                 _key = Utils.Sha256(Encoding.ASCII.GetBytes(secret));
-                if (sodium_init() < 0)
-                    throw new Exception("sodium init failed");
             }
             catch (Exception ex)
             {
@@ -39,7 +37,10 @@ namespace Outernet
                 var inputBytes = new byte[input.GetLen()];
                 Array.Copy(input.GetBuf(), 0, inputBytes, 0, input.GetLen());
                 var outputBytes = new byte[input.GetLen()];
-                crypto_stream_chacha20_xor(outputBytes, inputBytes, (ulong)input.GetLen(), nonce, _key);
+
+                // chacha20
+                ChaCha20.StreamRefXorIc(outputBytes, inputBytes, (uint)input.GetLen(), nonce, 0, _key);
+
                 output.InsertBack(outputBytes, input.GetLen());
                 return output;
             }
@@ -62,7 +63,10 @@ namespace Outernet
                 var inputBytes = new byte[input.GetLen() - 8];
                 Array.Copy(input.GetBuf(), 8, inputBytes, 0, input.GetLen() - 8);
                 var outputBytes = new byte[input.GetLen() - 8];
-                crypto_stream_chacha20_xor(outputBytes, inputBytes, (ulong)input.GetLen() - 8, nonce, _key);
+
+                // chacha20
+                ChaCha20.StreamRefXorIc(outputBytes, inputBytes, (uint)input.GetLen() - 8, nonce, 0, _key);
+
                 output.InsertBack(outputBytes, input.GetLen() - 8);
                 return output;
             }
@@ -82,13 +86,5 @@ namespace Outernet
             }
             return randomBytes;
         }
-
-        // TODO: add arm64 support for libsodium.dll
-
-        [DllImport("libsodium.dll", CallingConvention = CallingConvention.Cdecl)]
-        private static extern int sodium_init();
-
-        [DllImport("libsodium.dll", CallingConvention = CallingConvention.Cdecl)]
-        private static extern int crypto_stream_chacha20_xor(byte[] c, byte[] m, ulong mlen, byte[] n, byte[] k);
     }
 }

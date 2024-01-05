@@ -10,6 +10,10 @@
 
   <PropertyGroup>
     <ApplicationIcon>res\icon.ico</ApplicationIcon>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AssemblyVersion>5.2.0.0</AssemblyVersion>
+    <FileVersion>$(AssemblyVersion)</FileVersion>
+    <Version>$(AssemblyVersion)</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
@@ -26,15 +30,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="libsodium.dll" />
     <None Remove="wintun_arm64.dll" />
     <None Remove="wintun_x64.dll" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="libsodium.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="wintun_arm64.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -15,7 +15,7 @@ namespace Outernet
 
         private static readonly NLog.Logger _logger = Logger.IsLoggerInited() ? LogManager.GetCurrentClassLogger() : null;
         private const string _networkMask = "255.255.255.0";
-        private const int _tunMtu = 1300;
+        private const int _tunMtu = 1400;
         private const string _mainDns = "1.1.1.1";
         private const string _secDns = "8.8.8.8";
 
